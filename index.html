@@ -1,12 +1,138 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Cicklow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Dinamico!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="css/agregados.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+
 </head>
+
 <body>
-    <p>Hola mundo!</p>
+    <div class="container">
+        <div class="container responsive">
+            <div class="row">
+                <div class="col-md-3 bgCostado text-center bd-sidebar">
+                    <br />
+                    <p><img id="imagen" src="img/basica.jpg" class="rounded-circle"
+                            alt="Imagen de la persona" style="max-width: 128px;"></p>
+                    <p><strong><span id="nombre">Nombre</span></strong><br /><span id="quehace">No hace nada</span></p>
+                    <p>
+                        <button type="button" class="btn btn-secondary" onclick="IrA('FB');"><i
+                                class="fab fa-facebook"></i></button>
+                        <button type="button" class="btn btn-secondary" onclick="IrA('TW');"><i
+                                class="fab fa-twitter"></i></button>
+                    </p>
+                    <p>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active text-uppercase" aria-current="page" href="#yo">Acerca de mí</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase" href="#exp">Experiencia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase" href="#edu">Educación</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-uppercase" href="#contact">Contacto</a>
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+                <div class="col-md-9" style="padding:10px;">
+                    <!-- acerca -->
+                    <div class="row">
+                        <div class="col">
+                            <h2 id="yo" class="text-uppercase"><strong>Acerca de mí</strong></h2>
+                            <div class="highlight">
+                                <p><span id="lorem">Aca bla bla bla bla</span></p>
+                                <p class="txtBlanco">
+                                    <strong>Fecha de nacimiento:</strong> <span id="cumple">05/06/1983</span><br />
+                                    <strong>Lugar de nacimiento:</strong> <span id="nacimiento">La cucha del perro de la
+                                        esquina</span><br />
+                                    <strong>Email:</strong> <span id="email">lacucha@ejemplos.com</span><br />
+                                    <strong>Numero de telefono:</strong> <span id="telefono">+549000000000</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p><br /></p>
+                    <!-- exp -->
+                    <div class="row">
+                        <div class="col">
+                            <h2 id="exp" class="text-uppercase"><strong>Experiencia</strong></h2>
+                            <div class="highlight clearfix" id="lorem3">
+                                <div class="container">
+                                    <div class="row" id="contenedorBarras"> <!-- barras auto generadas -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p><br /></p>
+                    <!-- Edu -->
+                    <div class="row">
+                        <div class="col">
+                            <h2 id="edu" class="text-uppercase"><strong>Educación</strong></h2>
+                            <div class="highlight" id="contenedorEdu">
+                                <h5 id="titulo2">Titulo</h5>
+                                <p><span id="lorem2">Aca bla bla bla bla</span></p>
+                                <p class="txtBlanco">
+                                    <strong>Desde:</strong> <span id="cumple">05/06/1983</span>
+                                    <strong>Hasta:</strong> <span id="nacimiento">05/06/1983</span><br />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p><br /></p>
+                    <!-- contacto -->
+                    <div class="row">
+                        <div class="col">
+                            <h2 id="contact" class="text-uppercase"><strong>Contacto</strong></h2>
+                            <div class="highlight" id="contenedorContacto">
+                                <form id="formularioContacto">
+                                    <div class="mb-3">
+                                      <label for="exampleInputEmail1" class="form-label">Email</label>
+                                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="exampleInputPassword1" class="form-label">Mensaje</label>
+                                      <textarea class="form-control" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                    <p><br /></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary" id="btn-back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Al final para evitar recarga de la web -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!-- Cargamos jquery antes que nuestro script o no furula -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="js/funciones.js"></script>
 </body>
+
 </html>
