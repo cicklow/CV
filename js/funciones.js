@@ -1,6 +1,8 @@
 
 let QueTitulo = ["C/C++", "PHP", "ASP", "CSS", "JS", "Python", "Java", "Java Android", "Config Server", "Photoshop", "Diseño Web", "Rotar Figuritas"];
 let QueHaceTexto = ["Programador full time","Programador y/o Diseñador","Programador Web","Programador Web y/o mobil","No hace nada"];
+var banderaDatos = 0;
+
 //Datos iniciales/genericos
 var fechaN = "1992-03-08T15:13:16.688Z";
 var txtNombre = "Nombre Generico";
@@ -125,6 +127,21 @@ function GenerarInicio(){
     GenerarHTMLBarras();
 }
 
+function SetearDatos(){
+    banderaDatos = 1;
+    $("#imagenUser").attr("src", txtImagen);
+    $("#nombre").html(txtNombre);
+    $("#nacimiento").html(txtLugarNa);
+
+    var tmpFechaN = new Date(fechaN);
+    $("#cumple").html(tmpFechaN.toLocaleDateString("es-ES"));
+
+    $("#email").html(txtEmail);
+    $("#NumTel").html(txtTelefono);
+
+    $("#quehace").html(txtQueHace)
+}
+
 $(document).ready(function () {
     var entro; //bandera
     //Usamos la api de https://randomuser.me/ para generar un perfil al azar, si hay algun problema con esto, usamos los datos genericos.
@@ -136,19 +153,16 @@ $(document).ready(function () {
                 var tmpV = data.results[0];
                 fechaN = tmpV.dob.date;
                 txtNombre = tmpV.name.first + " " + tmpV.name.last;
-                txtLugarNa = tmpV.location.city + " - " + tmpV.location.state + "("+ tmpV.location.country +")";
+                txtLugarNa = tmpV.location.city + " - " + tmpV.location.state + " ("+ tmpV.location.country +")";
                 txtEmail = tmpV.email;
                 txtTelefono = tmpV.phone;
                 txtImagen = tmpV.picture.large;
-                entro = 1;
-            }else{
-                entro = 0;
             }
+            SetearDatos();
         }
     });
     
-    $("#imagen").attr("src", txtImagen);
-    $("#nombre").html(txtNombre);
+    if(!banderaDatos) SetearDatos();
 
 
     GenerarInicio();

@@ -13,6 +13,9 @@
   .bgCostado{
     padding: 20px;
     color: white;
+    overflow-y:hidden;
+    top: 0px;
+    bottom: 3px;
   }
   #nombre{
     font-size: 2.5rem; 
