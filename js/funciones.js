@@ -58,16 +58,15 @@ function GenerarFechas(fechaNacimiento) {
     const dAnioMayorEdad = new Date(fechaNacimiento);
     dAnioMayorEdad.setFullYear(dAnioMayorEdad.getFullYear() + 18); // cuando fue mayor de edad
 
-    const dAnioInicio = new Date(dAnioMayorEdad.getFullYear(),AzarNumeros(1, 12),AzarNumeros(1, 29)); //solo vamos hasta el dia 29 para no incurrir en febrero
+    const dAnioInicio = new Date(dAnioMayorEdad.getFullYear(), AzarNumeros(1, 12), AzarNumeros(1, 29)); //solo vamos hasta el dia 29 para no incurrir en febrero
     dAnioInicio.setFullYear(dAnioInicio.getFullYear() + AzarNumeros(2, 5)); // desde cuando inicio la carrera
-    
-    const dAnioFin = new Date(dAnioInicio.getFullYear(),AzarNumeros(1, 12),AzarNumeros(1, 29));
+
+    const dAnioFin = new Date(dAnioInicio.getFullYear(), AzarNumeros(1, 12), AzarNumeros(1, 29));
     dAnioFin.setFullYear(dAnioFin.getFullYear() + AzarNumeros(2, 5)); // cuando la termino
 
     //regresamos un array con los dos valores (inicio y fin)
     return [dAnioInicio, dAnioFin];
 }
-
 
 function GenerarHTMLEdu() {
     let tmpQueTitulo = [];
@@ -126,6 +125,20 @@ function GenerarInicio() {
     GenerarHTMLBarras();
 }
 
+function easter() {
+    //https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
+    const easterSpinning = [
+        { transform: 'rotate(0) scale(1)' },
+        { transform: 'rotate(360deg) scale(0)' }
+    ];
+
+    const easterTiming = {
+        duration: 2000,
+        iterations: 1,
+    }
+    document.body.animate(easterSpinning, easterTiming);
+}
+
 function SetearDatos() {
     banderaDatos = 1;
     $("#imagenUser").attr("src", txtImagen);
@@ -143,6 +156,11 @@ function SetearDatos() {
     //Generar educacion
     GenerarHTMLEdu();
 }
+
+// XD
+var url = new URL(document.location);
+var c = url.searchParams.get("easter");
+if(c == 1) easter();
 
 $(document).ready(function () {
     var entro; //bandera
