@@ -1,8 +1,8 @@
 
 let QueTitulo = ["C/C++", "PHP", "ASP", "CSS", "JS", "Python", "Java", "Java Android", "Config Server", "Photoshop", "Diseño Web", "Rotar Figuritas"];
-let QueHaceTexto = ["Programador full time","Programador y/o Diseñador","Programador Web","Programador Web y/o mobil","No hace nada"];
+let QueHaceTexto = ["Programador full time", "Programador y/o Diseñador", "Programador Web", "Programador Web y/o mobil", "No hace nada"];
 var banderaDatos = 0;
-
+var dAnios = 30;
 //Datos iniciales/genericos
 var fechaN = "1992-03-08T15:13:16.688Z";
 var txtNombre = "Nombre Generico";
@@ -54,18 +54,20 @@ function shuffleA(array) {
 
 //https://stackoverflow.com/a/33070496
 function GenerarFechas(fechaNacimiento) {
+
     const dAnioMayorEdad = new Date(fechaNacimiento);
     dAnioMayorEdad.setFullYear(dAnioMayorEdad.getFullYear() + 18); // cuando fue mayor de edad
 
-    const dAnioInicio = new Date(dAnioMayorEdad);
+    const dAnioInicio = new Date(dAnioMayorEdad.getFullYear(),AzarNumeros(1, 12),AzarNumeros(1, 29)); //solo vamos hasta el dia 29 para no incurrir en febrero
     dAnioInicio.setFullYear(dAnioInicio.getFullYear() + AzarNumeros(2, 5)); // desde cuando inicio la carrera
-
-    const dAnioFin = new Date(dAnioInicio);
+    
+    const dAnioFin = new Date(dAnioInicio.getFullYear(),AzarNumeros(1, 12),AzarNumeros(1, 29));
     dAnioFin.setFullYear(dAnioFin.getFullYear() + AzarNumeros(2, 5)); // cuando la termino
 
     //regresamos un array con los dos valores (inicio y fin)
     return [dAnioInicio, dAnioFin];
 }
+
 
 function GenerarHTMLEdu() {
     let tmpQueTitulo = [];
@@ -82,9 +84,9 @@ function GenerarHTMLEdu() {
         c.append('<h5 id="titulo2">' + tmpQueTitulo[i] + '</h5>\
         <p class="lineaBaja"><span id="lorem2">' + DameLorem(1) + '</span></p>\
         <p class="txtBlanco"><strong>Desde:</strong> \
-            <span id="fDesde">'+ tmpFechas[0].toLocaleDateString("es-ES") + '</span>\
+            <span id="fDesde">'+ tmpFechas[0].toLocaleDateString() + '</span>\
          | <strong>Hasta:</strong> \
-            <span id="fHasta">'+ tmpFechas[1].toLocaleDateString("es-ES") + '</span>\
+            <span id="fHasta">'+ tmpFechas[1].toLocaleDateString() + '</span>\
         <br /></p>\
         <hr class="border border-secondary border-2 opacity-50">');
     }
@@ -116,18 +118,15 @@ function backToTop() {
     document.documentElement.scrollTop = 0;
 }
 
-function GenerarInicio(){
+function GenerarInicio() {
     //Agregar el lorem
     $("#lorem").html(DameLorem(0));
-
-    //Generar educacion
-    GenerarHTMLEdu();
 
     //Generar las barras de lo que aprendio
     GenerarHTMLBarras();
 }
 
-function SetearDatos(){
+function SetearDatos() {
     banderaDatos = 1;
     $("#imagenUser").attr("src", txtImagen);
     $("#nombre").html(txtNombre);
@@ -140,6 +139,9 @@ function SetearDatos(){
     $("#NumTel").html(txtTelefono);
 
     $("#quehace").html(txtQueHace)
+
+    //Generar educacion
+    GenerarHTMLEdu();
 }
 
 $(document).ready(function () {
@@ -148,21 +150,22 @@ $(document).ready(function () {
     $.ajax({
         url: 'https://randomuser.me/api/?format=json',
         dataType: 'json',
-        success: function(data) {
-            if(data.results){
+        success: function (data) {
+            if (data.results) {
                 var tmpV = data.results[0];
                 fechaN = tmpV.dob.date;
                 txtNombre = tmpV.name.first + " " + tmpV.name.last;
-                txtLugarNa = tmpV.location.city + " - " + tmpV.location.state + " ("+ tmpV.location.country +")";
+                txtLugarNa = tmpV.location.city + " - " + tmpV.location.state + " (" + tmpV.location.country + ")";
                 txtEmail = tmpV.email;
                 txtTelefono = tmpV.phone;
                 txtImagen = tmpV.picture.large;
+                dAnios = tmpV.dob.age;
             }
             SetearDatos();
         }
     });
-    
-    if(!banderaDatos) SetearDatos();
+
+    if (!banderaDatos) SetearDatos();
 
 
     GenerarInicio();
